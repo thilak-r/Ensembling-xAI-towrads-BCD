@@ -1,0 +1,14 @@
+Classification Report for resnet50:
+              precision    recall  f1-score   support
+
+      normal       0.81      0.83      0.82        35
+        Sick       0.65      0.61      0.63        18
+
+    accuracy                           0.75        53
+   macro avg       0.73      0.72      0.72        53
+weighted avg       0.75      0.75      0.75        53
+
+Test Kappa Score: 0.4457
+F1 (Weighted): 0.7529
+Precision (Weighted): 0.7517
+Recall (Weighted): 0.7547

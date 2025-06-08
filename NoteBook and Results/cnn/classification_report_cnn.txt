@@ -1,0 +1,14 @@
+Classification Report for cnn:
+              precision    recall  f1-score   support
+
+      normal       0.86      0.89      0.87        35
+        Sick       0.76      0.72      0.74        18
+
+    accuracy                           0.83        53
+   macro avg       0.81      0.80      0.81        53
+weighted avg       0.83      0.83      0.83        53
+
+Test Kappa Score: 0.6163
+F1 (Weighted): 0.8290
+Precision (Weighted): 0.8284
+Recall (Weighted): 0.8302

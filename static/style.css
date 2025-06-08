@@ -1,0 +1,115 @@
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1, h2, h3, h4 {
+    color: #333;
+}
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="file"],
+.form-group input[type="number"],
+.form-group input[type="text"] { /* If you add text inputs */
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #4cae4c;
+}
+
+.results-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.image-display img, .gradcam-display img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.stage1-results ul {
+    list-style-type: none;
+    padding: 0;
+}
+.stage1-results li {
+    padding: 5px 0;
+    border-bottom: 1px dashed #eee;
+}
+.stage1-results li:last-child {
+    border-bottom: none;
+}
+
+.sick, .malignant {
+    color: #d9534f;
+    font-weight: bold;
+}
+.normal, .benign {
+    color: #5cb85c;
+    font-weight: bold;
+}
+
+.flashes {
+    list-style-type: none;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+}
+.flashes li {
+    margin-bottom: 5px;
+}
+.error {
+    color: #d9534f;
+    font-weight: bold;
+    background-color: #f8d7da;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #f5c6cb;
+}
