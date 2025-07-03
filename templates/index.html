@@ -1,3 +1,5 @@
+<!-- --- START OF FILE index.html --- -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,355 +8,98 @@
     <title>Breast Cancer Detection</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --primary-color: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary-color: #64748b;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
-            --danger-color: #ef4444;
-            --light-bg: #f8fafc;
-            --white: #ffffff;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --border-color: #e2e8f0;
-            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --primary-color: #2563eb; --primary-dark: #1d4ed8; --secondary-color: #64748b;
+            --success-color: #10b981; --warning-color: #f59e0b; --danger-color: #ef4444;
+            --light-bg: #f8fafc; --white: #ffffff; --text-primary: #1e293b;
+            --text-secondary: #64748b; --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1); --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --gradient-medical: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
         }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f8fafc 100%); min-height: 100vh; color: var(--text-primary); line-height: 1.6; }
+        .header { background: var(--gradient-medical); color: white; padding: 2rem 0; box-shadow: var(--shadow-lg); position: relative; overflow: hidden; }
+        .header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>'); opacity: 0.3; }
+        .header-content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; text-align: center; position: relative; z-index: 1; }
+        .header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .header p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+        .medical-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.8; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .flashes { background: var(--warning-color); color: white; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; list-style: none; box-shadow: var(--shadow-md); }
+        .flashes li { font-weight: 500; }
+        .error { background: var(--danger-color); color: white; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; font-weight: 500; box-shadow: var(--shadow-md); }
+        .main-form { background: var(--white); border-radius: 16px; padding: 2.5rem; box-shadow: var(--shadow-lg); border: 1px solid var(--border-color); margin-bottom: 2rem; position: relative; overflow: hidden; }
+        .main-form::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gradient-medical); }
+        .form-section { margin-bottom: 2rem; }
+        .form-section h2 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .form-group { position: relative; }
+        .form-group label { display: block; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-group input[type="file"] { width: 100%; padding: 1rem; border: 2px dashed var(--border-color); border-radius: 8px; background: var(--light-bg); transition: all 0.3s ease; cursor: pointer; }
+        .form-group input[type="file"]:hover { border-color: var(--primary-color); background: white; }
+        .form-group input[type="number"] { width: 100%; padding: 0.75rem 1rem; border: 2px solid var(--border-color); border-radius: 8px; font-size: 1rem; transition: all 0.3s ease; background: white; }
+        .form-group input[type="number"]:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+        .submit-btn { background: var(--gradient-medical); color: white; padding: 1rem 2.5rem; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.5rem; margin: 2rem auto 0; box-shadow: var(--shadow-md); text-transform: uppercase; letter-spacing: 1px; }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f8fafc 100%);
-            min-height: 100vh;
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
+        .results-section { background: var(--white); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-lg); border: 1px solid var(--border-color); margin-top: 2rem; }
+        .results-header { text-align: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid var(--border-color); }
+        .results-header h2 { color: var(--primary-color); font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .result-card { background: var(--light-bg); border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border-color); transition: all 0.3s ease; }
+        .result-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .result-card h3 { color: var(--primary-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
 
-        .header {
-            background: var(--gradient-medical);
-            color: white;
-            padding: 2rem 0;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-            overflow: hidden;
-        }
+        .image-display { text-align: center; }
+        .image-display img { width: 100%; max-width: 400px; height: auto; border-radius: 8px; box-shadow: var(--shadow-md); margin: 1rem auto; display: block;} /* Center the image */
 
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
-        }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
+        .stage1-results ul { list-style: none; padding: 0; }
+        .stage1-results li { background: white; padding: 0.75rem; margin-bottom: 0.5rem; border-radius: 6px; border-left: 4px solid var(--primary-color); box-shadow: var(--shadow-sm); }
+        .assessment-result { background: white; padding: 1.5rem; border-radius: 8px; margin-top: 1rem; box-shadow: var(--shadow-sm); border-left: 4px solid var(--primary-color); }
 
-        .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .medical-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            opacity: 0.8;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .flashes {
-            background: var(--warning-color);
-            color: white;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            list-style: none;
-            box-shadow: var(--shadow-md);
-        }
-
-        .flashes li {
-            font-weight: 500;
-        }
-
-        .error {
-            background: var(--danger-color);
-            color: white;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            font-weight: 500;
-            box-shadow: var(--shadow-md);
-        }
-
-        .main-form {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 2.5rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-            margin-bottom: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .main-form::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-medical);
-        }
-
-        .form-section {
-            margin-bottom: 2rem;
-        }
-
-        .form-section h2 {
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 0.5rem;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .form-group {
-            position: relative;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .form-group input[type="file"] {
-            width: 100%;
-            padding: 1rem;
-            border: 2px dashed var(--border-color);
-            border-radius: 8px;
-            background: var(--light-bg);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .form-group input[type="file"]:hover {
-            border-color: var(--primary-color);
-            background: white;
-        }
-
-        .form-group input[type="number"] {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: white;
-        }
-
-        .form-group input[type="number"]:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        .submit-btn {
-            background: var(--gradient-medical);
-            color: white;
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin: 2rem auto 0;
-            box-shadow: var(--shadow-md);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .results-section {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-            margin-top: 2rem;
-        }
-
-        .results-header {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--border-color);
-        }
-
-        .results-header h2 {
-            color: var(--primary-color);
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .result-card {
-            background: var(--light-bg);
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .result-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .result-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .image-display img {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: var(--shadow-md);
-            margin: 1rem 0;
-        }
-
-        .stage1-results ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .stage1-results li {
-            background: white;
-            padding: 0.75rem;
-            margin-bottom: 0.5rem;
-            border-radius: 6px;
-            border-left: 4px solid var(--primary-color);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .assessment-result {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-            box-shadow: var(--shadow-sm);
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .normal { 
-            color: var(--success-color); 
-            font-weight: 600;
-        }
-        
-        .sick { 
-            color: var(--warning-color); 
-            font-weight: 600;
-        }
-        
-        .benign { 
-            color: var(--success-color); 
-            font-weight: 600;
-        }
-        
-        .malignant { 
-            color: var(--danger-color); 
-            font-weight: 600;
-        }
+        .normal { color: var(--success-color); font-weight: 600; }
+        .sick { color: var(--warning-color); font-weight: 600; }
+        .benign { color: var(--success-color); font-weight: 600; }
+        .malignant { color: var(--danger-color); font-weight: 600; }
 
         .stage2-results {
-            grid-column: 1 / -1;
             background: linear-gradient(135deg, #fef7f0 0%, #fff 100%);
             border-radius: 12px;
             padding: 2rem;
             border: 2px solid #fed7aa;
             margin-top: 1rem;
         }
+         .stage2-results h3 { color: var(--danger-color); font-size: 1.3rem; margin-bottom: 1.5rem; }
+         .prediction-result { background: white; padding: 1.5rem; border-radius: 8px; margin: 1rem 0; box-shadow: var(--shadow-sm); border-left: 4px solid var(--danger-color); }
 
-        .stage2-results h3 {
-            color: var(--danger-color);
+
+        .pipeline-analysis-section {
+            background: linear-gradient(135deg, #e0f2fe 0%, #fff 100%);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 2px solid var(--primary-color);
+            margin-top: 2rem;
+            grid-column: 1 / -1;
+        }
+        .pipeline-analysis-section h3 {
+            color: var(--primary-dark);
             font-size: 1.3rem;
             margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
+         .pipeline-result-item {
+             background: white;
+             padding: 1rem;
+             border-radius: 8px;
+             margin-bottom: 0.75rem;
+             box-shadow: var(--shadow-sm);
+             border-left: 4px solid var(--primary-color);
+         }
 
-        .prediction-result {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 1rem 0;
-            box-shadow: var(--shadow-sm);
-            border-left: 4px solid var(--danger-color);
-        }
 
         .gradcam-display {
             margin-top: 2rem;
@@ -374,60 +119,25 @@
             border: 2px solid var(--border-color);
         }
 
-        .alert-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .alert-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .alert-normal { background: rgba(16, 185, 129, 0.1); color: var(--success-color); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .alert-warning { background: rgba(245, 158, 11, 0.1); color: var(--warning-color); border: 1px solid rgba(245, 158, 11, 0.3); }
+        .alert-danger { background: rgba(239, 68, 68, 0.1); color: var(--danger-color); border: 1px solid rgba(239, 68, 68, 0.3); }
+        .alert-info {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            border: 1px solid rgba(37, 99, 235, 0.3);
         }
 
-        .alert-normal {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--success-color);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
-
-        .alert-warning {
-            background: rgba(245, 158, 11, 0.1);
-            color: var(--warning-color);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-        }
-
-        .alert-danger {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--danger-color);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-        }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            
-            .header {
-                padding: 1.5rem 0;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .main-form {
-                padding: 1.5rem;
-            }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .results-grid {
-                grid-template-columns: 1fr;
-            }
+            .container { padding: 1rem; }
+            .header { padding: 1.5rem 0; }
+            .header h1 { font-size: 2rem; }
+            .main-form { padding: 1.5rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .results-grid { grid-template-columns: 1fr; }
+            .pipeline-analysis-section { grid-column: 1 / -1; }
         }
 
         .loading-spinner {
@@ -440,9 +150,7 @@
             animation: spin 1s ease-in-out infinite;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
@@ -464,7 +172,7 @@
                 </ul>
             {% endif %}
         {% endwith %}
-        
+
         {% if error_message %}
             <p class="error"><i class="fas fa-times-circle"></i> {{ error_message }}</p>
         {% endif %}
@@ -485,7 +193,7 @@
                         <label for="age"><i class="fas fa-calendar-alt"></i> Age (years):</label>
                         <input type="number" name="age" id="age" step="1" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"> {# Corrected typo #}
                         <label for="weight"><i class="fas fa-weight"></i> Weight (Kg):</label>
                         <input type="number" name="weight" id="weight" step="0.1" required>
                     </div>
@@ -532,13 +240,15 @@
                                 {% endfor %}
                                 </ul>
                                 <div class="assessment-result">
-                                    <strong>Overall Assessment:</strong> 
+                                    <strong>Overall Assessment:</strong>
                                     {% if is_overall_sick %}
                                         <span class="alert-badge alert-warning">
                                             <i class="fas fa-exclamation-triangle"></i>
                                             <span class="sick">Potentially Abnormal</span>
                                         </span>
-                                        <br><small>Average Confidence: {{ avg_sick_confidence }}</small>
+                                        {% if avg_sick_confidence and avg_sick_confidence != "N/A" %} {# Check for N/A as well #}
+                                             <br><small>Average Confidence: {{ avg_sick_confidence }}</small>
+                                        {% endif %}
                                     {% else %}
                                         <span class="alert-badge alert-normal">
                                             <i class="fas fa-check-circle"></i>
@@ -547,18 +257,17 @@
                                     {% endif %}
                                 </div>
                             {% else %}
-                                <p>No Stage 1 results available.</p>
+                                <p>No Stage 1 results available (Models might not be loaded).</p>
                             {% endif %}
                         </div>
                     </div>
-                </div>
 
-                {% if is_overall_sick %}
-                    <div class="stage2-results">
-                        <h3><i class="fas fa-search-plus"></i> Stage 2: Advanced Analysis (Benign/Malignant)</h3>
-                        {% if stage2_prediction %}
+                    <!-- Stage 2 (Multimodal) Result Card -->
+                    <div class="result-card stage2-results">
+                        <h3><i class="fas fa-search-plus"></i> Stage 2: Multimodal Analysis</h3>
+                         {% if stage2_prediction and 'Model Not Loaded' not in stage2_prediction and 'Error' not in stage2_prediction %}
                             <div class="prediction-result">
-                                <strong>Classification:</strong> 
+                                <strong>Classification:</strong>
                                 {% if 'Malignant' in stage2_prediction %}
                                     <span class="alert-badge alert-danger">
                                         <i class="fas fa-exclamation-circle"></i>
@@ -572,26 +281,49 @@
                                 {% else %}
                                     <span>{{ stage2_prediction }}</span>
                                 {% endif %}
-                                
+
                                 {% if stage2_confidence %}
                                     <br><strong>Confidence Level:</strong> {{ stage2_confidence }}
                                 {% endif %}
                             </div>
+                        {% elif stage2_prediction %}
+                             <div class="prediction-result">
+                                 <i class="fas fa-exclamation-triangle"></i> <span>{{ stage2_prediction }}</span>
+                             </div>
+                        {% else %}
+                             <p><i class="fas fa-info-circle"></i> Stage 2 analysis could not be completed (Clinical data invalid or skipped).</p>
+                        {% endif %}
+                    </div>
+
+                     <!-- NEW: Pipeline Analysis Section -->
+                     {% if grad_cam_image or detected_bbox is not none %} {# CORRECTED Jinja2 syntax #}
+                        <div class="pipeline-analysis-section">
+                            <h3><i class="fas fa-bullseye"></i> Pipeline Analysis (ROI + Classifier + CAM)</h3>
+
+                             <div class="pipeline-result-item">
+                                 <strong>Detection Result:</strong>
+                                 {% if detected_bbox is not none %} {# CORRECTED Jinja2 syntax #}
+                                     <span class="alert-badge alert-info">
+                                         <i class="fas fa-check-circle"></i>
+                                         <span>Box Detected</span>
+                                     </span>
+
+                                     
+                                 {% endif %}
+                             </div>
+
+
 
                             {% if grad_cam_image %}
                                 <div class="gradcam-display">
-                                    <h4><i class="fas fa-crosshairs"></i> Region of Interest Analysis (Grad-CAM)</h4>
+                                    <h4><i class="fas fa-crosshairs"></i> Classifier Grad-CAM on Masked Input</h4>
                                     <img src="data:image/png;base64,{{ grad_cam_image }}" alt="Grad-CAM Visualization">
-                                    <p><small>Highlighted areas indicate regions of highest model attention during analysis</small></p>
+                                    <p><small>Highlighted areas indicate regions of highest model attention within the detected breast area</small></p>
                                 </div>
-                            {% elif stage2_prediction and 'Error' not in stage2_prediction %}
-                                <p><i class="fas fa-info-circle"></i> Grad-CAM visualization could not be generated for this analysis.</p>
                             {% endif %}
-                        {% else %}
-                             <p><i class="fas fa-exclamation-triangle"></i> Stage 2 analysis could not be completed.</p>
-                        {% endif %}
-                    </div>
-                {% endif %}
+                        </div>
+                     {% endif %}
+                </div>
             </div>
         {% endif %}
     </div>
@@ -602,20 +334,22 @@
             const button = document.querySelector('.submit-btn');
             const spinner = button.querySelector('.loading-spinner');
             const text = button.querySelector('span');
-            
+
             button.disabled = true;
-            spinner.style.display = 'block';
+            spinner.style.display = 'inline-block';
             text.textContent = 'Analyzing...';
+
+            document.querySelectorAll('.flashes, .error, .results-section').forEach(el => el.style.display = 'none');
         });
 
-        // File input enhancement
-        document.getElementById('image').addEventListener('change', function(e) {
-            const fileName = e.target.files[0]?.name;
-            if (fileName) {
-                // You could add a preview or file name display here
-                console.log('File selected:', fileName);
-            }
-        });
+         // Fix for handling Flask redirect with POST -> GET
+         // If a 302 redirect happens after POST, the browser performs a GET request
+         // which doesn't have the form data. Flask's flash is used instead of
+         // rendering the template with error messages.
+         // You might need to clear the upload folder on successful redirect if not done elsewhere.
+
     </script>
 </body>
 </html>
+
+<!-- --- END OF FILE index.html --- -->
